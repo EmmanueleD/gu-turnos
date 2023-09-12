@@ -36,6 +36,7 @@ import { useDataStore } from "@/store/dataStore";
 
 const router = useRouter();
 const dataStore = useDataStore();
+
 const data = dataStore.staff;
 
 function goToStaffDetails(currentStaff) {

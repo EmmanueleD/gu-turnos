@@ -50,7 +50,9 @@
 import { ref } from "vue";
 import { postSupaData } from "@/utils/supabaseApiService.js";
 import { useRouter } from "vue-router";
+import { useDataStore } from "../store/dataStore";
 
+const dataStore = useDataStore();
 const router = useRouter();
 
 const newStaff = ref({
@@ -60,12 +62,16 @@ const newStaff = ref({
   textColor: "#ffffff",
 });
 function onSubmit() {
-  postSupaData({ tableName: "staff", newItem: newStaff.value }).then((res) => {
-    if (res) {
-      resetNewStaff();
+  postSupaData({ tableName: "staff", newItem: newStaff.value })
+    .then((res) => {
+      if (res) {
+        resetNewStaff();
+        dataStore.fetchData();
+      }
+    })
+    .finally(() => {
       returnToStaffList();
-    }
-  });
+    });
 }
 
 function resetNewStaff() {
