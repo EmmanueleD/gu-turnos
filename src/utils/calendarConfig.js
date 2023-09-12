@@ -111,6 +111,7 @@ export function getCalendarConfig({onEventDrop, onEventResize, onDateSet, editab
           
 
             firstDay: 1,
+            resourceAreaWidth:'10%',
             editable,
             droppable: editable,
             eventResourceEditable: editable,
@@ -123,6 +124,12 @@ export function getCalendarConfig({onEventDrop, onEventResize, onDateSet, editab
             weekends: true,
             eventOverlap: true,
             displayEventTime:true,
-            displayEventEnd: true
+            displayEventEnd: true,
+
+          
+            
+            minTime: '06:00:00', 
+            maxTime: '24:00:00', 
+           
     }
   }

@@ -9,7 +9,12 @@ export const useDataStore = defineStore({
         storeError:null,
         storeLoading:{
             staff:true,
-            calendarEvents:true
+            calendarEvents:true,
+            calendarRecurrentEvents:true,
+        },
+        toast:{
+            message:null,
+            severity:null
         }
         
     }),
@@ -31,7 +36,9 @@ export const useDataStore = defineStore({
             
             getSupaData({ tableName: 'calendar-event' })
                 .then(res =>{
-                    this.calendarEvents = res
+                    res.forEach(event =>{
+                        this.calendarEvents.push(event)
+                    })
                 })
                 .catch(err =>{
                     this.error = err
@@ -39,6 +46,27 @@ export const useDataStore = defineStore({
                 .finally(()=>{
                     this.storeLoading.calendarEvents = false
                 })
+
+            getSupaData({tableName:'recurrent-shift'})
+                .then(res =>{
+                    res.forEach(event =>{
+                        if (event.active) this.calendarEvents.push(event)
+                    })
+                })
+                .catch(err =>{
+                    this.error = err
+                })
+                .finally(()=>{
+                    this.storeLoading.calendarRecurrentEvents = false
+                })
         },
+        showToast(toast){
+            this.toast.message = toast.message
+            this.toast.severity = toast.severity
+            setTimeout(() => {
+                this.toast.message = null
+                this.toast.severity = null
+            }, (3000));
+        }
     },
 })

@@ -1,8 +1,9 @@
 <template>
-    <div v-if="isLoading" class="w-screen h-screen flex flex-col justify-center items-center">
+    <div v-if="isLoading" class="w-screen h-screen flex flex-col justify-center items-center" >
         <Loading />
         <span v-if="dataStore.storeLoading.staff">Loading staff data...</span>
         <span v-if="dataStore.storeLoading.calendarEvents">Loading events...</span>
+        <span v-if="dataStore.storeLoading.calendarRecurrentEvents">Loading recurrent events...</span>
     </div>
     <div v-else-if="hasError" class="w-screen h-screen flex flex-col justify-center items-center">
         <Error class="w-full md:w-2/5 lg:w-1/3" :error="dataStore.storeError" />

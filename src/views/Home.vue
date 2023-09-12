@@ -1,3 +1,4 @@
-<template>
-    <h1>Home</h1>
-</template>
+<script setup>
+import { useDataStore } from "../store/dataStore";
+const dataStore = useDataStore();
+</script>

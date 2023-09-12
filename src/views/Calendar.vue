@@ -1,14 +1,27 @@
 <template>
 <div class="flex">
-  <div v-if="currentView == 'resourceTimelineOneDay' || currentView == 'resourceTimeline'" class="w-1/4 flex-none collapse bg-base-200 mb-4">
-    <input v-model="showPersons" type="checkbox" />
-    <div class="collapse-title text-xl font-medium">Agrega una persona</div>
-    <div class="collapse-content">
-      <People title="Encargad@" :options="encangardoOptions" :addNuovaPersona="addNuovaPersona" />
-      <People title="Caja" :options="cajaOptions" :addNuovaPersona="addNuovaPersona" />
-      <People title="Barista" :options="baristaOptions" :addNuovaPersona="addNuovaPersona" />
-      <People title="Venta" :options="ventaOptions" :addNuovaPersona="addNuovaPersona" />
-      <People title="Runner" :options="runnerOptions" :addNuovaPersona="addNuovaPersona" />
+  <div v-if="currentView == 'resourceTimelineOneDay' || currentView == 'resourceTimeline'" class="w-1/5 flex-none bg-base-200">
+    <div  class=" collapse  mb-4">
+      <input v-model="showPersons" type="checkbox" />
+      <div class="collapse-title text-xl font-medium">Agrega una persona</div>
+      <div class="collapse-content">
+        <People title="Encargad@" :options="encangardoOptions" :addNuovaPersona="addNuovaPersona" />
+        <People title="Caja" :options="cajaOptions" :addNuovaPersona="addNuovaPersona" />
+        <People title="Barista" :options="baristaOptions" :addNuovaPersona="addNuovaPersona" />
+        <People title="Venta" :options="ventaOptions" :addNuovaPersona="addNuovaPersona" />
+        <People title="Runner" :options="runnerOptions" :addNuovaPersona="addNuovaPersona" />
+      </div>
+    </div>
+    <div class=" collapse  mb-4">
+      <input v-model="showRoles" type="checkbox" />
+      <div class="collapse-title text-xl font-medium">Agrega una persona</div>
+      <div class="collapse-content">
+        <People title="Encargad@" :options="encangardoOptions" :addNuovaPersona="addNuovaPersona" />
+        <People title="Caja" :options="cajaOptions" :addNuovaPersona="addNuovaPersona" />
+        <People title="Barista" :options="baristaOptions" :addNuovaPersona="addNuovaPersona" />
+        <People title="Venta" :options="ventaOptions" :addNuovaPersona="addNuovaPersona" />
+        <People title="Runner" :options="runnerOptions" :addNuovaPersona="addNuovaPersona" />
+      </div>
     </div>
   </div>
 
@@ -52,6 +65,7 @@ const ventaOptions = dataStore.staff.filter(x => x.resourceId == 4)
 const runnerOptions = dataStore.staff.filter(x => x.resourceId == 5)
 
 const showPersons = ref(false)
+const showRoles = ref(false)
 const fullCalendar = ref(null)
 const copiedEvents = ref([])
 const currentView = ref(null)
